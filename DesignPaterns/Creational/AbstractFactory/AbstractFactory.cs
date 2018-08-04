@@ -6,5 +6,6 @@ namespace DesignPaterns.Creational.AbstractFactory
 {
     abstract class AbstractFactory
     {
+
     }
 }

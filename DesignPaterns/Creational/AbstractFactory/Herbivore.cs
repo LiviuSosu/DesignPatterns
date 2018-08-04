@@ -4,8 +4,7 @@ using System.Text;
 
 namespace DesignPaterns.Creational.AbstractFactory
 {
-    abstract class AbstractFactory
+    abstract class Herbivore
     {
-
     }
 }

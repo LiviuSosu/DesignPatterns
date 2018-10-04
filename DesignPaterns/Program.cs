@@ -8,18 +8,35 @@ namespace DesignPaterns
     {
         static void Main(string[] args)
         {
-            #region Abstract Factory
-            //ContinentFactory africa = new AfricaFactory();
-            //AnimalWorld world = new AnimalWorld(africa);
-            //world.RunFoodChain();
-
-            //// Create and run the American animal world
-
-            //ContinentFactory america = new AmericaFactory();
-            //world = new AnimalWorld(america);
-            //world.RunFoodChain();
+            #region Creational design patterns
+            //AbstractFactory();
+            //Builder();
             #endregion
 
+            #region Structural design patterns
+            #endregion
+
+            #region Behavioral design patterns
+            #endregion
+            // Wait for user input
+            Console.ReadKey();
+        }
+
+        static void AbstractFactory()
+        {
+            ContinentFactory africa = new AfricaFactory();
+            AnimalWorld world = new AnimalWorld(africa);
+            world.RunFoodChain();
+
+            // Create and run the American animal world
+
+            ContinentFactory america = new AmericaFactory();
+            world = new AnimalWorld(america);
+            world.RunFoodChain();
+        }
+
+        static void Builder()
+        {
             VehicleBuilder builder;
 
             // Create shop with vehicle builders
@@ -39,10 +56,6 @@ namespace DesignPaterns
             builder = new MotorCycleBuilder();
             shop.Construct(builder);
             builder.Vehicle.Show();
-
-            // Wait for user input
-            Console.ReadKey();
-
         }
     }
 }

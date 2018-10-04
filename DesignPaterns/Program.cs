@@ -1,5 +1,6 @@
 ﻿using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
+using DesignPaterns.Creational.Factory_Method;
 using System;
 
 namespace DesignPaterns
@@ -11,6 +12,7 @@ namespace DesignPaterns
             #region Creational design patterns
             //AbstractFactory();
             //Builder();
+            Factory_Method();
             #endregion
 
             #region Structural design patterns
@@ -56,6 +58,27 @@ namespace DesignPaterns
             builder = new MotorCycleBuilder();
             shop.Construct(builder);
             builder.Vehicle.Show();
+        }
+
+        static void Factory_Method()
+        {
+            // Note: constructors call Factory Method
+
+            Document[] documents = new Document[2];
+
+            documents[0] = new Resume();
+            documents[1] = new Report();
+
+            // Display document pages
+
+            foreach (Document document in documents)
+            {
+                Console.WriteLine("\n" + document.GetType().Name + "--");
+                foreach (Page page in document.Pages)
+                {
+                    Console.WriteLine(" " + page.GetType().Name);
+                }
+            }
         }
     }
 }

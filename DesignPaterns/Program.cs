@@ -1,6 +1,8 @@
 ﻿using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
 using DesignPaterns.Creational.Factory_Method;
+using DesignPaterns.Creational.Prototype;
+using DesignPaterns.Creational.Singleton;
 using System;
 
 namespace DesignPaterns
@@ -12,7 +14,9 @@ namespace DesignPaterns
             #region Creational design patterns
             //AbstractFactory();
             //Builder();
-            Factory_Method();
+            //Factory_Method();
+            Prototype();
+            //Singleton();
             #endregion
 
             #region Structural design patterns
@@ -78,6 +82,53 @@ namespace DesignPaterns
                 {
                     Console.WriteLine(" " + page.GetType().Name);
                 }
+            }
+        }
+
+        static void Prototype()
+        {
+            ColorManager colormanager = new ColorManager();
+
+            // Initialize with standard colors
+
+            colormanager["red"] = new Color(255, 0, 0);
+            colormanager["green"] = new Color(0, 255, 0);
+            colormanager["blue"] = new Color(0, 0, 255);
+
+            // User adds personalized colors
+
+            colormanager["angry"] = new Color(255, 54, 0);
+            colormanager["peace"] = new Color(128, 211, 128);
+            colormanager["flame"] = new Color(211, 34, 20);
+
+            // User clones selected colors
+
+            Color color1 = colormanager["red"].Clone() as Color;
+            Color color2 = colormanager["peace"].Clone() as Color;
+            Color color3 = colormanager["flame"].Clone() as Color;
+        }
+
+        static void Singleton()
+        {
+            LoadBalancer b1 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b2 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b3 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b4 = LoadBalancer.GetLoadBalancer();
+
+            // Same instance?
+
+            if (b1 == b2 && b2 == b3 && b3 == b4)
+            {
+                Console.WriteLine("Same instance\n");
+            }
+
+            // Load balance 15 server requests
+
+            LoadBalancer balancer = LoadBalancer.GetLoadBalancer();
+            for (int i = 0; i < 15; i++)
+            {
+                string server = balancer.Server;
+                Console.WriteLine("Dispatch Request to: " + server);
             }
         }
     }

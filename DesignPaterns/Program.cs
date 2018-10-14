@@ -3,6 +3,8 @@ using DesignPaterns.Creational.Builder;
 using DesignPaterns.Creational.Factory_Method;
 using DesignPaterns.Creational.Prototype;
 using DesignPaterns.Creational.Singleton;
+using DesignPaterns.Structural.Adapter;
+using DesignPaterns.Structural.Bridge;
 using System;
 
 namespace DesignPaterns
@@ -15,11 +17,13 @@ namespace DesignPaterns
             //AbstractFactory();
             //Builder();
             //Factory_Method();
-            Prototype();
+            //Prototype();
             //Singleton();
             #endregion
 
             #region Structural design patterns
+            //Adapter();
+            Bridge();
             #endregion
 
             #region Behavioral design patterns
@@ -130,6 +134,42 @@ namespace DesignPaterns
                 string server = balancer.Server;
                 Console.WriteLine("Dispatch Request to: " + server);
             }
+        }
+
+        static void Adapter()
+        {
+            // Non-adapted chemical compound
+            Compound unknown = new Compound("Unknown");
+            unknown.Display();
+
+            // Adapted chemical compounds
+            Compound water = new RichCompound("Water");
+            water.Display();
+
+            Compound benzene = new RichCompound("Benzene");
+            benzene.Display();
+
+            Compound ethanol = new RichCompound("Ethanol");
+            ethanol.Display();
+        }
+
+        static void Bridge()
+        {
+            // Create RefinedAbstraction
+            Customers customers = new Customers("Chicago");
+
+            // Set ConcreteImplementor
+            customers.Data = new CustomersData();
+            // Exercise the bridge
+
+            customers.Show();
+            customers.Next();
+            customers.Show();
+            customers.Next();
+            customers.Show();
+            customers.Add("Henry Velasquez");
+
+            customers.ShowAll();
         }
     }
 }

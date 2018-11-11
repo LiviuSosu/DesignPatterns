@@ -7,6 +7,7 @@ using DesignPaterns.Structural.Adapter;
 using DesignPaterns.Structural.Bridge;
 using DesignPaterns.Structural.Composite;
 using DesignPaterns.Structural.Decorator;
+using DesignPaterns.Structural.Facade;
 using DesignPaterns.Structural.Flyweight;
 using System;
 
@@ -258,6 +259,24 @@ namespace DesignPaterns
                 Character character = factory.GetCharacter(c);
                 character.Display(pointSize);
             }
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void Facade()
+        {
+            // Facade
+            Mortgage mortgage = new Mortgage();
+
+            // Evaluate mortgage eligibility for customer
+
+            Customer customer = new Customer("Ann McKinsey");
+            bool eligible = mortgage.IsEligible(customer, 125000);
+
+            Console.WriteLine("\n" + customer.Name +
+                " has been " + (eligible ? "Approved" : "Rejected"));
 
             // Wait for user
 

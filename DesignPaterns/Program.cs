@@ -6,6 +6,7 @@ using DesignPaterns.Creational.Singleton;
 using DesignPaterns.Structural.Adapter;
 using DesignPaterns.Structural.Bridge;
 using DesignPaterns.Structural.Composite;
+using DesignPaterns.Structural.Decorator;
 using System;
 
 namespace DesignPaterns
@@ -25,7 +26,8 @@ namespace DesignPaterns
             #region Structural design patterns
             //Adapter();
             //Bridge();
-            Composite();
+            //Composite();
+            //Decorator();
             #endregion
 
             #region Behavioral design patterns
@@ -202,6 +204,33 @@ namespace DesignPaterns
             // Recursively display nodes
 
             root.Display(1);
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void Decorator()
+        {
+            // Create book
+
+            Book book = new Book("Worley", "Inside ASP.NET", 10);
+            book.Display();
+
+            // Create video
+
+            Video video = new Video("Spielberg", "Jaws", 23, 92);
+            video.Display();
+
+            // Make video borrowable, then borrow and display
+
+            Console.WriteLine("\nMaking video borrowable:");
+
+            Borrowable borrowvideo = new Borrowable(video);
+            borrowvideo.BorrowItem("Customer #1");
+            borrowvideo.BorrowItem("Customer #2");
+
+            borrowvideo.Display();
 
             // Wait for user
 

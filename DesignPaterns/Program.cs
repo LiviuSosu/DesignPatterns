@@ -7,6 +7,7 @@ using DesignPaterns.Structural.Adapter;
 using DesignPaterns.Structural.Bridge;
 using DesignPaterns.Structural.Composite;
 using DesignPaterns.Structural.Decorator;
+using DesignPaterns.Structural.Flyweight;
 using System;
 
 namespace DesignPaterns
@@ -28,6 +29,7 @@ namespace DesignPaterns
             //Bridge();
             //Composite();
             //Decorator();
+            Flyweight();
             #endregion
 
             #region Behavioral design patterns
@@ -231,6 +233,31 @@ namespace DesignPaterns
             borrowvideo.BorrowItem("Customer #2");
 
             borrowvideo.Display();
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void Flyweight()
+        {
+            string document = "AAZZBBZB";
+            char[] chars = document.ToCharArray();
+
+            CharacterFactory factory = new CharacterFactory();
+
+            // extrinsic state
+
+            int pointSize = 10;
+
+            // For each character use a flyweight object
+
+            foreach (char c in chars)
+            {
+                pointSize++;
+                Character character = factory.GetCharacter(c);
+                character.Display(pointSize);
+            }
 
             // Wait for user
 

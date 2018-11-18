@@ -35,10 +35,10 @@ namespace DesignPaterns
             //Decorator();
             //Flyweight();
             //Proxy();
-            //ChainOfResponsability();
             #endregion
 
             #region Behavioral design patterns
+            //ChainOfResponsability();
             Command();
             #endregion
             // Wait for user input

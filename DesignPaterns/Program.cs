@@ -1,4 +1,6 @@
-﻿using DesignPaterns.Creational.AbstractFactory;
+﻿using DesignPaterns.Behavioral.ChainOfResponsability;
+using DesignPaterns.Behavioral.Command;
+using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
 using DesignPaterns.Creational.Factory_Method;
 using DesignPaterns.Creational.Prototype;
@@ -33,9 +35,11 @@ namespace DesignPaterns
             //Decorator();
             //Flyweight();
             //Proxy();
+            //ChainOfResponsability();
             #endregion
 
             #region Behavioral design patterns
+            Command();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -295,6 +299,59 @@ namespace DesignPaterns
             Console.WriteLine("4 - 2 = " + proxy.Sub(4, 2));
             Console.WriteLine("4 * 2 = " + proxy.Mul(4, 2));
             Console.WriteLine("4 / 2 = " + proxy.Div(4, 2));
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void ChainOfResponsability()
+        {
+            // Setup Chain of Responsibility
+
+            Approver larry = new Director();
+            Approver sam = new VicePresident();
+            Approver tammy = new President();
+
+            larry.SetSuccessor(sam);
+            sam.SetSuccessor(tammy);
+
+            // Generate and process purchase requests
+
+            Purchase p = new Purchase(2034, 350.00, "Assets");
+            larry.ProcessRequest(p);
+
+            p = new Purchase(2035, 32590.10, "Project X");
+            larry.ProcessRequest(p);
+
+            p = new Purchase(2036, 122100.00, "Project Y");
+            larry.ProcessRequest(p);
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void Command()
+        {
+            // Create user and let her compute
+
+            User user = new User();
+
+            // User presses calculator buttons
+
+            user.Compute('+', 100);
+            user.Compute('-', 50);
+            user.Compute('*', 10);
+            user.Compute('/', 2);
+
+            // Undo 4 commands
+
+            user.Undo(4);
+
+            // Redo 3 commands
+
+            user.Redo(3);
 
             // Wait for user
 

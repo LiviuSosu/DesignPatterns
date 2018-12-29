@@ -1,5 +1,6 @@
 ﻿using DesignPaterns.Behavioral.ChainOfResponsability;
 using DesignPaterns.Behavioral.Command;
+using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
 using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
@@ -14,6 +15,7 @@ using DesignPaterns.Structural.Facade;
 using DesignPaterns.Structural.Flyweight;
 using DesignPaterns.Structural.Proxy;
 using System;
+using System.Collections.Generic;
 
 namespace DesignPaterns
 {
@@ -41,7 +43,8 @@ namespace DesignPaterns
             #region Behavioral design patterns
             //ChainOfResponsability();
             //Command();
-            Iterator();
+            //Iterator();
+            Interpreter();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -389,6 +392,30 @@ namespace DesignPaterns
             {
                 Console.WriteLine(item.Name);
             }
+        }
+
+        static void Interpreter()
+        {
+            string roman = "MCMXXVIII";
+            Context context = new Context(roman);
+
+            // Build the 'parse tree'
+
+            List<Expression> tree = new List<Expression>();
+            tree.Add(new ThousandExpression());
+            tree.Add(new HundredExpression());
+            tree.Add(new TenExpression());
+            tree.Add(new OneExpression());
+
+            // Interpret
+
+            foreach (Expression exp in tree)
+            {
+                exp.Interpret(context);
+            }
+
+            Console.WriteLine("{0} = {1}",
+              roman, context.Output);
         }
     }
 }

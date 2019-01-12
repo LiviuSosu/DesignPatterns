@@ -2,6 +2,7 @@
 using DesignPaterns.Behavioral.Command;
 using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
+using DesignPaterns.Behavioral.Mediator;
 using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
 using DesignPaterns.Creational.Factory_Method;
@@ -44,7 +45,8 @@ namespace DesignPaterns
             //ChainOfResponsability();
             //Command();
             //Iterator();
-            Interpreter();
+            //Interpreter();
+            Mediator();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -416,6 +418,24 @@ namespace DesignPaterns
 
             Console.WriteLine("{0} = {1}",
               roman, context.Output);
+        }
+
+        static void Mediator()
+        {
+            ConcreteMediator m = new ConcreteMediator();
+
+            ConcreteColleague1 c1 = new ConcreteColleague1(m);
+            ConcreteColleague2 c2 = new ConcreteColleague2(m);
+
+            m.Colleague1 = c1;
+            m.Colleague2 = c2;
+
+            c1.Send("How are you?");
+            c2.Send("Fine, thanks");
+
+            // Wait for user
+
+            Console.ReadKey();
         }
     }
 }

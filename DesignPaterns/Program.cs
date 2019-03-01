@@ -48,7 +48,8 @@ namespace DesignPaterns
             //Iterator();
             //Interpreter();
             //Mediator();
-            Observer();
+            //Observer();
+            TemplateMethod();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -454,6 +455,19 @@ namespace DesignPaterns
             ibm.Price = 121.00;
             ibm.Price = 120.50;
             ibm.Price = 120.75;
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void TemplateMethod()
+        {
+            //DataAccessObject daoCategories = new Categories();
+            //daoCategories.Run();
+
+            //DataAccessObject daoProducts = new Products();
+            //daoProducts.Run();
 
             // Wait for user
 

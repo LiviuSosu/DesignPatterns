@@ -4,6 +4,7 @@ using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
 using DesignPaterns.Behavioral.Mediator;
 using DesignPaterns.Behavioral.Observer;
+using DesignPaterns.Behavioral.State;
 using DesignPaterns.Behavioral.Strategy;
 using DesignPaterns.Behavioral.Visitor;
 using DesignPaterns.Creational.AbstractFactory;
@@ -53,7 +54,8 @@ namespace DesignPaterns
             //Observer();
             //TemplateMethod();
             //Visitor();
-            Startegy();
+            //Startegy();
+            State();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -501,6 +503,20 @@ namespace DesignPaterns
 
             studentRecords.SetSortStrategy(new MergeSort());
             studentRecords.Sort();
+        }
+
+        static void State()
+        {
+            Account account = new Account("Jim Johnson");
+
+            // Apply financial transactions
+
+            account.Deposit(500.0);
+            account.Deposit(300.0);
+            account.Deposit(550.0);
+            account.PayInterest();
+            account.Withdraw(2000.00);
+            account.Withdraw(1100.00);
         }
     }
 }

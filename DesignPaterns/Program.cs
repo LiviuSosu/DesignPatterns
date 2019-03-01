@@ -4,6 +4,7 @@ using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
 using DesignPaterns.Behavioral.Mediator;
 using DesignPaterns.Behavioral.Observer;
+using DesignPaterns.Behavioral.Strategy;
 using DesignPaterns.Behavioral.Visitor;
 using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
@@ -51,7 +52,8 @@ namespace DesignPaterns
             //Mediator();
             //Observer();
             //TemplateMethod();
-            Visitor();
+            //Visitor();
+            Startegy();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -479,6 +481,26 @@ namespace DesignPaterns
 
             e.Accept(new IncomeVisitor());
             e.Accept(new VacationVisitor());
+        }
+
+        static void Startegy()
+        {
+            SortedList studentRecords = new SortedList();
+
+            studentRecords.Add("Samual");
+            studentRecords.Add("Jimmy");
+            studentRecords.Add("Sandra");
+            studentRecords.Add("Vivek");
+            studentRecords.Add("Anna");
+
+            studentRecords.SetSortStrategy(new QuickSort());
+            studentRecords.Sort();
+
+            studentRecords.SetSortStrategy(new ShellSort());
+            studentRecords.Sort();
+
+            studentRecords.SetSortStrategy(new MergeSort());
+            studentRecords.Sort();
         }
     }
 }

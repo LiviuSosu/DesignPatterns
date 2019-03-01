@@ -4,6 +4,7 @@ using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
 using DesignPaterns.Behavioral.Mediator;
 using DesignPaterns.Behavioral.Observer;
+using DesignPaterns.Behavioral.Visitor;
 using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
 using DesignPaterns.Creational.Factory_Method;
@@ -49,7 +50,8 @@ namespace DesignPaterns
             //Interpreter();
             //Mediator();
             //Observer();
-            TemplateMethod();
+            //TemplateMethod();
+            Visitor();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -319,9 +321,9 @@ namespace DesignPaterns
         {
             // Setup Chain of Responsibility
 
-            Approver larry = new Director();
+            Approver larry = new Behavioral.ChainOfResponsability.Director();
             Approver sam = new VicePresident();
-            Approver tammy = new President();
+            Approver tammy = new Behavioral.ChainOfResponsability.President();
 
             larry.SetSuccessor(sam);
             sam.SetSuccessor(tammy);
@@ -455,10 +457,6 @@ namespace DesignPaterns
             ibm.Price = 121.00;
             ibm.Price = 120.50;
             ibm.Price = 120.75;
-
-            // Wait for user
-
-            Console.ReadKey();
         }
 
         static void TemplateMethod()
@@ -468,10 +466,19 @@ namespace DesignPaterns
 
             //DataAccessObject daoProducts = new Products();
             //daoProducts.Run();
+        }
 
-            // Wait for user
+        static void Visitor()
+        {
+            Employees e = new Employees();
+            e.Attach(new Clerk());
+            e.Attach(new Behavioral.Visitor.Director());
+            e.Attach(new Behavioral.Visitor.President());
 
-            Console.ReadKey();
+            // Employees are 'visited'
+
+            e.Accept(new IncomeVisitor());
+            e.Accept(new VacationVisitor());
         }
     }
 }

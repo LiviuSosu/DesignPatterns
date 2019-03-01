@@ -3,6 +3,7 @@ using DesignPaterns.Behavioral.Command;
 using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
 using DesignPaterns.Behavioral.Mediator;
+using DesignPaterns.Behavioral.Memento;
 using DesignPaterns.Behavioral.Observer;
 using DesignPaterns.Behavioral.State;
 using DesignPaterns.Behavioral.Strategy;
@@ -55,7 +56,8 @@ namespace DesignPaterns
             //TemplateMethod();
             //Visitor();
             //Startegy();
-            State();
+            //State();
+            Memento();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -517,6 +519,29 @@ namespace DesignPaterns
             account.PayInterest();
             account.Withdraw(2000.00);
             account.Withdraw(1100.00);
+        }
+
+        static void Memento()
+        {
+            SalesProspect s = new SalesProspect();
+            s.Name = "Noel van Halen";
+            s.Phone = "(412) 256-0990";
+            s.Budget = 25000.0;
+
+            // Store internal state
+
+            ProspectMemory m = new ProspectMemory();
+            m.Memento = s.SaveMemento();
+
+            // Continue changing originator
+
+            s.Name = "Leo Welch";
+            s.Phone = "(310) 209-7111";
+            s.Budget = 1000000.0;
+
+            // Restore saved state
+
+            s.RestoreMemento(m.Memento);
         }
     }
 }

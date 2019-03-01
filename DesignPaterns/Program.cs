@@ -3,6 +3,7 @@ using DesignPaterns.Behavioral.Command;
 using DesignPaterns.Behavioral.Interpreter;
 using DesignPaterns.Behavioral.Iterator;
 using DesignPaterns.Behavioral.Mediator;
+using DesignPaterns.Behavioral.Observer;
 using DesignPaterns.Creational.AbstractFactory;
 using DesignPaterns.Creational.Builder;
 using DesignPaterns.Creational.Factory_Method;
@@ -46,7 +47,8 @@ namespace DesignPaterns
             //Command();
             //Iterator();
             //Interpreter();
-            Mediator();
+            //Mediator();
+            Observer();
             #endregion
             // Wait for user input
             Console.ReadKey();
@@ -432,6 +434,26 @@ namespace DesignPaterns
 
             c1.Send("How are you?");
             c2.Send("Fine, thanks");
+
+            // Wait for user
+
+            Console.ReadKey();
+        }
+
+        static void Observer()
+        {
+            // Create IBM stock and attach investors
+
+            IBM ibm = new IBM("IBM", 120.00);
+            ibm.Attach(new Investor("Sorros"));
+            ibm.Attach(new Investor("Berkshire"));
+
+            // Fluctuating prices will notify investors
+
+            ibm.Price = 120.10;
+            ibm.Price = 121.00;
+            ibm.Price = 120.50;
+            ibm.Price = 120.75;
 
             // Wait for user
 

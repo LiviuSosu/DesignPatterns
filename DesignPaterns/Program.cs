@@ -27,10 +27,11 @@ namespace DesignPaterns
 {
     class Program
     {
+        //design patterns implemented from here https://www.dofactory.com/net/design-patterns
         static void Main(string[] args)
         {
             #region Creational design patterns
-            //AbstractFactory();
+            AbstractFactory();
             //Builder();
             //Factory_Method();
             //Prototype();
@@ -57,7 +58,7 @@ namespace DesignPaterns
             //Visitor();
             //Startegy();
             //State();
-            Memento();
+            //Memento();
             #endregion
             // Wait for user input
             Console.ReadKey();
